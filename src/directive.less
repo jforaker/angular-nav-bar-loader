@@ -1,0 +1,75 @@
+.the-directive {
+  color: green;
+
+  button {
+    padding: 10px;
+    color: red;
+  }
+}
+
+.svg-loader {
+  display: none;
+  /*margin: 0 0 2em;*/
+  /*height: 100px;*/
+  /*width: 20%;*/
+  /*text-align: center;*/
+  /*padding: 1em;*/
+  /*margin: 0 auto 1em;*/
+  /*vertical-align: top;*/
+
+  position: relative;
+  /*display: inline-block;*/
+}
+
+/*
+  Set the color of the icon
+*/
+svg path,
+svg rect {
+  fill: red;
+}
+
+.loader-ing {
+  /*color: darkorange;*/
+}
+
+.loader {
+  display: none;
+  font-size: 10px;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid red;
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
