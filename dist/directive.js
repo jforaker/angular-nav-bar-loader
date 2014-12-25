@@ -1,7 +1,7 @@
 /*!
  * angularjs-jf-contextual-spinner
  * 
- * Version: 0.0.1 - 2014-12-25T08:39:38.636Z
+ * Version: 0.0.1 - 2014-12-25T08:53:08.829Z
  * License: MIT
  */
 
