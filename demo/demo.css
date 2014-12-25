@@ -11,6 +11,7 @@ BODY {
   overflow-y: scroll;
   margin-bottom: 60px;
 
+  margin-top: 60px;
 }
 
 .footer {
