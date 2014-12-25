@@ -17,5 +17,6 @@ Optional attributes include any animate.css class, to be passed in like so: <br>
 <button class="btn btn-info" jf-loader animate-class="swing">Fetch data</button>
 ```
 
+## [Demo](http://jforaker.github.io/angular-contextual-spinner/demo/demo.html)
 ### License
 MIT
