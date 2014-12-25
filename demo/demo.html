@@ -1,56 +1,66 @@
 <!doctype html>
-<html ng-app="demo">
+<html ng-app="demo" ng-cloak>
 <head>
   <meta charset="utf-8">
   <title>AngularJS directive demo</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-
-  <!-- TODO: Include Angular from Bower components -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
   <script src="../bower_components/angular-route/angular-route.js"></script>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
-
   <link rel="stylesheet" href="../dist/directive.css">
   <link rel="stylesheet" href="demo.css">
   <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.0/animate.css"/>
 
 </head>
-  <body ng-controller="DemoController">
-    <div class="container">
-      <h1 class="text-muted">Demo <span ng-show="subreddit"> (from {{ subreddit }})</span></h1>
+<body ng-controller="DemoController">
+<div class="container">
 
-      <div class="row">
-        <a href jf-loader animate-class="flip" class="btn btn-primary btn-lg" ng-click="fetch()">flip </a>
-        <a href jf-loader animate-class="shake" class="btn btn-primary btn-lg" ng-click="fetch()"> shake </a>
-        <a href jf-loader animate-class="bounce" class="btn btn-primary btn-lg" ng-click="fetch()"> bounce </a>
-        <a href jf-loader animate-class="flash" class="btn btn-primary btn-lg" ng-click="fetch()"> flash </a>
-        <a href jf-loader animate-class="rubberband" class="btn btn-primary btn-lg" ng-click="fetch()"> rubberBand </a>
-        <a href jf-loader animate-class="swing" class="btn btn-primary btn-lg" ng-click="fetch()"> swing </a>
-        <a href jf-loader animate-class="tada" class="btn btn-primary btn-lg" ng-click="fetch()"> tada </a>
+  <h2>Contextual loading spinner for AngularJS</h2>
 
-        <div ng-repeat="post in posts" class="panel panel-default">
-          <div class="panel-body media">
-            <span class="badge pull-right">{{post.data.score}}</span>
+  <p>Sometimes you need an element to contextually indicate an http request is being made.
+    <br>
+    You might have a global loading indicator somewhere, but this directive
+    allows the user to receive input on any element that is wired to a http service.
+  </p>
 
-            <div class="pull-left" ng-if="post.data.thumbnail">
-              <img class="thumbnail" ng-src="{{post.data.thumbnail}}">
-            </div>
-            <div class="">
-              <div class="">
-                <a href="{{post.data.url}}">{{post.data.title}}</a>
+  <h1 class="text-muted">Demo <span ng-show="subreddit"> (from reddit: {{ subreddit }})</span></h1>
 
-                <p class="meta">by {{post.data.author}}</p>
+  <div class="row">
+    <a href jf-loader animate-class="flip" class="btn btn-primary btn-lg" ng-click="fetch()">flip </a>
+    <a href jf-loader animate-class="shake" class="btn btn-primary btn-lg" ng-click="fetch()"> shake </a>
+    <a href jf-loader animate-class="bounce" class="btn btn-primary btn-lg" ng-click="fetch()"> bounce </a>
+    <a href jf-loader animate-class="flash" class="btn btn-primary btn-lg" ng-click="fetch()"> flash </a>
+    <a href jf-loader animate-class="swing" class="btn btn-primary btn-lg" ng-click="fetch()"> swing </a>
+    <a href jf-loader animate-class="tada" class="btn btn-primary btn-lg" ng-click="fetch()"> tada </a>
+    <a href jf-loader class="btn btn-primary btn-lg" ng-click="fetch()"> default animation (set in app.config) </a>
+    <a href class="btn btn-primary btn-lg" ng-click="fetch()"> no directive </a>
 
-                <p class="meta-comments">{{post.data.num_comments}} comments</p>
-              </div>
-            </div>
-          </div>
+    <div ng-repeat="post in posts" class="panel panel-default">
+      <div class="panel-body media">
+        <span class="badge pull-right">{{post.data.score}}</span>
+        <div class="pull-left" ng-if="post.data.thumbnail">
+          <img class="thumbnail" ng-src="{{post.data.thumbnail}}">
+        </div>
+        <div>
+          <a href="{{post.data.url}}" target="_blank">{{post.data.title}}</a>
+          <p class="meta">by {{post.data.author}}</p>
+          <p class="meta-comments">{{post.data.num_comments}} comments</p>
         </div>
       </div>
     </div>
-  <script src="../dist/directive.js"></script>
-  <script src="demo.js"></script>
-  </body>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">Forked from Dan Whalin's <a href="https://github.com/DanWahlin/AngularOverlay" target="_blank">angular-overlay</a> |
+      Heavily inspired by Wes Cruver's <a href="https://github.com/chieffancypants/angular-loading-bar" target="_blank">angular-loading-bar</a>
+    </p>
+  </div>
+</footer>
+
+<script src="../dist/directive.js"></script>
+<script src="demo.js"></script>
+</body>
 </html>
