@@ -11,8 +11,7 @@ to an element, it will show a spinner animation upon each http request made via 
 jQuery <br>
 
 ### Options
-Add animate.css for extra effects. [animate.css](https://github.com/daneden/animate.css) <br>
-Optional attributes include any animate.css class, to be passed in like so: <br>
+Add [animate.css](https://github.com/daneden/animate.css) and pass in any of its classes to the `animateClass` attr for extra effects like so: <br>
 ```
 <button class="btn btn-info" jf-loader animate-class="swing">Fetch data</button>
 ```

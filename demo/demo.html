@@ -3,78 +3,86 @@
 <head>
   <meta charset="utf-8">
   <title>Angular Contextual Loader demo</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/angular/angular.min.js"></script>
   <script src="../bower_components/angular-route/angular-route.js"></script>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+  <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/material.css">
   <link rel="stylesheet" href="../dist/directive.css">
   <link rel="stylesheet" href="demo.css">
-  <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.0/animate.css"/>
 
 </head>
-<body ng-controller="DemoController">
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-              aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://github.com/jforaker/angular-contextual-spinner">Angular Contextual Loader</a>
-    </div>
-  </div>
-</nav>
-<div class="container">
-
-  <h2>Contextual loading spinner for AngularJS</h2>
-
-  <p>Sometimes you need an element to contextually indicate an http request is being made.
-    <br>
-    You might have a global loading indicator somewhere, but this directive
-    allows the user to receive input on any element that is wired to a http service.
-  </p>
-
-  <h1 class="text-muted">Demo <span ng-show="subreddit"> (from reddit: {{ subreddit }})</span></h1>
-
-  <div class="row">
-    <a href jf-loader animate-class="flip" class="btn btn-primary btn-lg" ng-click="fetch()">flip </a>
-    <a href jf-loader animate-class="shake" class="btn btn-primary btn-lg" ng-click="fetch()"> shake </a>
-    <a href jf-loader animate-class="bounce" class="btn btn-primary btn-lg" ng-click="fetch()"> bounce </a>
-    <a href jf-loader animate-class="flash" class="btn btn-primary btn-lg" ng-click="fetch()"> flash </a>
-    <a href jf-loader animate-class="swing" class="btn btn-primary btn-lg" ng-click="fetch()"> swing </a>
-    <a href jf-loader animate-class="tada" class="btn btn-primary btn-lg" ng-click="fetch()"> tada </a>
-    <a href jf-loader class="btn btn-primary btn-lg" ng-click="fetch()"> default animation (set in app.config) </a>
-    <a href class="btn btn-primary btn-lg" ng-click="fetch()"> no directive </a>
-
-    <div ng-repeat="post in posts" class="panel panel-default">
-      <div class="panel-body media">
-        <span class="badge pull-right">{{post.data.score}}</span>
-        <div class="pull-left" ng-if="post.data.thumbnail">
-          <img class="thumbnail" ng-src="{{post.data.thumbnail}}">
+  <body ng-controller="DemoController">
+    <nav class="navbar navbar-default navbar-fixed-top" jf-nav-bar-loader>
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://github.com/jforaker/angular-contextual-spinner">Angular Contextual Loader</a>
         </div>
-        <div>
-          <a href="{{post.data.url}}" target="_blank">{{post.data.title}}</a>
-          <p class="meta">by {{post.data.author}}</p>
-          <p class="meta-comments">{{post.data.num_comments}} comments</p>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/jforaker/angular-contextual-spinner" class="btn" style="padding: 10px">
+              <i class="glyphicon glyphicon-share"></i>&nbsp;&nbsp;Fork on GitHub
+            </a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <h2>Contextual navbar loader for AngularJS</h2>
+        <p>An attempt at recreating the Google iOS app's loading bar in Angular. Just add <code>jf-nav-bar-loader</code> to the parent navbar element, for ex:</p>
+        <p><pre> &lt;nav class="navbar navbar-default navbar-fixed-top" jf-nav-bar-loader&gt; </pre></p>
+        <p>
+          You can set up custom configurations in your app config, or rely on defaults, or change it yourself.
+        <pre>
+jf_NavLoadingBarCfgProvider.setConfigs({
+  delay: 1000,
+  baseColor: 'white',
+  baseOpacity: 0.3
+})</pre></p>
+        <p>To use, simply include it as a dependency in your app and you're good to go.</p>
+        <p><pre> angular.module('demo', ['jf_NavBarLoader']) </pre></p>
+
+        <h2 class="text-muted">Click the button for a <strong>Demo</strong> <span ng-show="subreddit"> (from reddit: {{ subreddit }})</span></h2>
+      </div>
+
+      <div class="row">
+        <a href class="btn btn-primary btn-lg" ng-click="fetch()" style="text-transform: lowercase"> $http.get( {{ subreddit }} ) </a>
+
+        <div ng-repeat="post in posts" class="panel panel-default">
+          <div class="panel-body media">
+            <span class="badge pull-right">{{post.data.score}}</span>
+            <div class="pull-left" ng-if="post.data.thumbnail">
+              <img class="thumbnail" ng-src="{{post.data.thumbnail}}">
+            </div>
+            <div>
+              <a href="{{post.data.url}}" target="_blank">{{post.data.title}}</a>
+              <p class="meta">by {{post.data.author}}</p>
+              <p class="meta-comments">{{post.data.num_comments}} comments</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">Forked from Dan Whalin's <a href="https://github.com/DanWahlin/AngularOverlay" target="_blank">angular-overlay</a> |
-      Heavily inspired by Wes Cruver's <a href="https://github.com/chieffancypants/angular-loading-bar" target="_blank">angular-loading-bar</a>
-    </p>
-  </div>
-</footer>
+    <footer class="footer" style="left: 0;">
+      <div class="container">
+        <p class="text-muted">Started with <a href="https://github.com/mohsen1/angular-directive-boilerplate" target="_blank">angular-directive-boilerplate</a> and
+          <strong>Heavily </strong>inspired by Wes Cruver's <a href="https://github.com/chieffancypants/angular-loading-bar" target="_blank">angular-loading-bar</a>
+        </p>
+      </div>
+    </footer>
 
-<script src="../dist/directive.js"></script>
-<script src="demo.js"></script>
-</body>
+  <script src="../dist/directive.js"></script>
+  <script src="demo.js"></script>
+  </body>
 </html>

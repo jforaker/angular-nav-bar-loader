@@ -1,6 +1,6 @@
 /*!
  * angularjs-jf-contextual-spinner
  * 
- * Version: 0.0.1 - 2014-12-25T08:53:08.841Z
+ * Version: 0.0.1 - 2015-01-01T07:26:04.990Z
  * License: MIT
- */.svg-loader{display:none;position:relative}svg path,svg rect{fill:red}
+ */#jf-nav-loading-bar{transition:width .75s ease;background:#fff;position:absolute}
