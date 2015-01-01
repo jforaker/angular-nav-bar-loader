@@ -1,7 +1,7 @@
 /*!
  * angularjs-jf-contextual-spinner
  * 
- * Version: 0.0.1 - 2015-01-01T08:23:25.590Z
+ * Version: 0.0.1 - 2015-01-01T19:49:53.067Z
  * License: MIT
  */
 
@@ -13,7 +13,7 @@ angular.module('jf_NavBarLoader', [])
         this.loadingBarTemplate = '<div id="jf-nav-loading-bar"></div>';
 
         var config = {
-            delay: undefined,
+            hideDelay: undefined,
             baseOpacity: undefined,
             baseColor: undefined,
             loadingBarTemplate: this.loadingBarTemplate
@@ -71,35 +71,45 @@ angular.module('jf_NavBarLoader', [])
 
     .directive('jfNavBarLoader', function (jf_NavLoadingBarCfg, $timeout) {
         return {
-            link: function (scope, element, attrs) {
+            link: function (scope, element) {
 
-                var $el = $(element);
-                var configs = jf_NavLoadingBarCfg.getConfig();
-                var loader = angular.element(jf_NavLoadingBarCfg.getConfig().loadingBarTemplate);
-                var hideDelay = typeof configs.delay !== 'undefined' ? configs.delay : 750;
-                var opacity = typeof configs.baseOpacity !== 'undefined' ? configs.baseOpacity : 0.3;
-                var bgColor = typeof configs.baseColor !== 'undefined' ? configs.baseColor : 'white';
+                var $el = $(element),
+                    configs = jf_NavLoadingBarCfg.getConfig(),
+                    loader = angular.element(jf_NavLoadingBarCfg.getConfig().loadingBarTemplate),
+                    hideDelay = typeof configs.hideDelay !== 'undefined' ? configs.hideDelay : 750,
+                    opacity = typeof configs.baseOpacity !== 'undefined' ? configs.baseOpacity : 0.3,
+                    bgColor = typeof configs.baseColor !== 'undefined' ? configs.baseColor : 'white';
 
                 loader.css({
                     height: $el.height(),
-                    width: $el.width(),
                     opacity: opacity,
                     backgroundColor: bgColor
                 });
 
                 scope.$on("jf_NavBarLoader:show", function () {
-                    loader.insertBefore($el.children().first());
+
+                    if($el.children().length){
+                        loader.insertBefore($el.children().first());
+                    } else {
+                        //todo: needs work
+                        loader.appendTo($el);
+                    }
                     loader.css({ width: '0%' });
                     loader.show();
 
-                    var animateWidth = function (from) {
-                        if (from >= 100) {
+                    console.log('loader ', loader);
+                    var animateWidth = function (width) {
+                        if (width >= 100) {
                             return false;
                         } else {
-                            loader.css({ width: from + "%" });
+                            loader.css({
+                                width: width + "%",
+                                WebkitTransition: 'width 0.75s ease',
+                                transition: 'width 0.75s ease'
+                            });
                             $timeout(function () {
-                                animateWidth(from + 5);
-                            }, 1)
+                                animateWidth(width + 5);
+                            }, 1);
                         }
                     };
                     return animateWidth(Math.floor(Math.random() * 15) + 1);
@@ -108,7 +118,7 @@ angular.module('jf_NavBarLoader', [])
                 return scope.$on("jf_NavBarLoader:hide", function () {
                     loader.css({ width: '100%' });
                     $timeout(function () {
-                        loader.hide();
+                        loader.fadeOut('fast');
                     }, hideDelay)
                 });
             }

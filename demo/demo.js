@@ -9,13 +9,13 @@ angular.module('demo', ['ngRoute', 'jf_NavBarLoader'])
             .otherwise({redirectTo: '/'});
 
         jf_NavLoadingBarCfgProvider.setConfigs({
-            delay: 1000,
+            hideDelay: 500,
             baseColor: 'white',
             baseOpacity: 0.3
         })
     })
 
-    .controller('DemoController', function ($scope, $http) {
+    .controller('DemoController', function ($scope, $http, $timeout) {
 
         $scope.posts = [];
         $scope.subreddit = null;
@@ -41,6 +41,8 @@ angular.module('demo', ['ngRoute', 'jf_NavBarLoader'])
                 });
         };
 
-        $scope.fetch();
+        $timeout(function () {
+            $scope.fetch();
+        }, 500);
     })
 ;
