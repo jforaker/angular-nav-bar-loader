@@ -1,8 +1,8 @@
 {
-  "name": "angularjs-jf-contextual-spinner",
+  "name": "angularjs-navbar-loader",
   "version": "0.0.1",
-  "description": "Contextual Loading spinner for AngularJS",
-  "repository": "git@github.com:mohsen1/angular-directive-boilerplate.git",
+  "description": "Angular loading bar animation inspired by Google's iOS app",
+  "repository": "https://github.com/jforaker/angular-nav-bar-loader/tree/nav",
   "main": "demo/directive.js",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js test"
