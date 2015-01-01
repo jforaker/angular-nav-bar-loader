@@ -1,22 +1,25 @@
-# Angularjs Contextual loading spinner
+# Angularjs nav bar loading animation
 
-This is a simple AngularJS attribute directive that wires itself into your app's httpinterceptors. <br><br>
-By adding the attribute
+This is a simple AngularJS directive that wires itself into your app's httpinterceptors. <br><br>
+By adding the directive
 ```
-jf-loader
+jf-nav-bar-loader
 ```
-to an element, it will show a spinner animation upon each http request made via that element, and the spinner will hide upon completion of the request.
+to an element, it will show a loading bar animation upon each http request made, and the loading bar will hide upon completion of the request.
 
-### Dependencies:
+### Example
+```
+<nav class="navbar navbar-default navbar-fixed-top" jf-nav-bar-loader>
+```
+
+#### Dependencies:
 jQuery <br>
 
-### Options
-Add animate.css for extra effects. [animate.css](https://github.com/daneden/animate.css) <br>
-Optional attributes include any animate.css class, to be passed in like so: <br>
-```
-<button class="btn btn-info" jf-loader animate-class="swing">Fetch data</button>
-```
 
-## [Demo](http://jforaker.github.io/angular-contextual-spinner/demo/demo.html)
+## [Demo](http://jforaker.github.io/angular-nav-bar-loader/demo/demo.html)
+
+### Todo:
+Add to any element such as a button for a 'ladda' effect
+
 ### License
 MIT

@@ -1,6 +1,6 @@
-angular.module('demo', ['ngRoute', 'jf.Directives'])
+angular.module('demo', ['ngRoute', 'jf_NavBarLoader'])
 
-    .config(function ($routeProvider, jfSpinnerConfigProvider) {
+    .config(function ($routeProvider, jf_NavLoadingBarCfgProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: '/demo/demo.html',
@@ -8,15 +8,18 @@ angular.module('demo', ['ngRoute', 'jf.Directives'])
             })
             .otherwise({redirectTo: '/'});
 
-        jfSpinnerConfigProvider.setDelay(500);
-        jfSpinnerConfigProvider.setBaseAnimationClass('flash');
+        jf_NavLoadingBarCfgProvider.setConfigs({
+            hideDelay: 500,
+            baseColor: 'white',
+            baseOpacity: 0.3
+        })
     })
 
-    .controller('DemoController', function ($scope, $http) {
+    .controller('DemoController', function ($scope, $http, $timeout) {
 
         $scope.posts = [];
         $scope.subreddit = null;
-        $scope.subreddits = ['cats', 'pics', 'funny', 'gaming', 'AdviceAnimals', 'aww'];
+        $scope.subreddits = ['askscience', 'halo', 'mindcrack', 'cars', 'facepalm', 'catpictures', 'learnprogramming'];
 
         var getRandomSubreddit = function () {
             var sub = $scope.subreddits[Math.floor(Math.random() * $scope.subreddits.length)];
@@ -37,5 +40,9 @@ angular.module('demo', ['ngRoute', 'jf.Directives'])
                     console.log('data error', data);
                 });
         };
+
+        $timeout(function () {
+            $scope.fetch();
+        }, 500);
     })
 ;
