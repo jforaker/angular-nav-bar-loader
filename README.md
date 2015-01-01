@@ -1,4 +1,4 @@
-# Angularjs Contextual loading spinner
+# Angularjs nav bar loading animation
 
 This is a simple AngularJS directive that wires itself into your app's httpinterceptors. <br><br>
 By adding the directive
@@ -16,10 +16,10 @@ to an element, it will show a loading bar animation upon each http request made,
 jQuery <br>
 
 
-## [Demo](http://jforaker.github.io/angular-contextual-spinner/demo/demo.html)
+## [Demo](http://jforaker.github.io/angular-nav-bar-loader/demo/demo.html)
 
 ### Todo:
-Add to any element such as a button for a 'ladda' effect 
+Add to any element such as a button for a 'ladda' effect
 
 ### License
 MIT
